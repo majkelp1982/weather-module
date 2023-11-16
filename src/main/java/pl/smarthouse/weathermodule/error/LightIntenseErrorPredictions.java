@@ -5,7 +5,7 @@ import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
-import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRange;
+import pl.smarthouse.sharedobjects.dto.core.TimeRange;
 import pl.smarthouse.smartmodule.utils.errorpredictions.PinErrorPredictionsUtils;
 import pl.smarthouse.smartmonitoring.service.ErrorHandlingService;
 import pl.smarthouse.weathermodule.service.WeatherModuleService;

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class Esp32ModuleProperties {
 
   // Module specific
-  public static final String FIRMWARE = "20231102.17";
+  public static final String FIRMWARE = "20231116.19";
   public static final String VERSION = "20231102.16";
   public static final String MAC_ADDRESS = "3C:71:BF:4D:60:00";
   public static final String MODULE_TYPE = "WEATHER";

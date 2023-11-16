@@ -3,7 +3,7 @@ package pl.smarthouse.weathermodule.utils;
 import java.time.LocalTime;
 import java.util.Objects;
 import lombok.experimental.UtilityClass;
-import pl.smarthouse.sharedobjects.dto.comfort.core.TimeRange;
+import pl.smarthouse.sharedobjects.dto.core.TimeRange;
 
 @UtilityClass
 public class TimeRangeUtils {
