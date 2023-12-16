@@ -38,6 +38,7 @@ public class WeatherModuleConfiguration {
     sds011Response.setMode(Sds011State.SLEEP);
     final PinResponse pinResponse = new PinResponse();
     pinResponse.setPinState(PinState.HIGH);
+    pinResponse.setPinDefaultState(PinState.HIGH);
     weatherModuleDao =
         WeatherModuleDao.builder()
             .moduleName(Esp32ModuleProperties.MODULE_TYPE)
@@ -69,6 +70,8 @@ public class WeatherModuleConfiguration {
         "lightIntense.error", BooleanCompareProperties.builder().saveEnabled(true).build());
     compareProcessor.addMap(
         "lightIntense.counter", NumberCompareProperties.builder().saveEnabled(false).build());
+    compareProcessor.addMap(
+        "lightIntense.pinDefaultState", EnumCompareProperties.builder().saveEnabled(false).build());
     compareProcessor.addMap(
         "lightIntense.pinState", EnumCompareProperties.builder().saveEnabled(false).build());
     compareProcessor.addMap(

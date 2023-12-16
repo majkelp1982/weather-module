@@ -31,11 +31,15 @@ public class LightIntenseErrorPredictions {
     PinErrorPredictionsUtils.setPinErrorPredictions(
         errorHandlingService,
         LIGHT_INTENSE,
-        isResultValid(weatherModuleService.getLightIntenseSensorResponse().getPinValue()),
+        this::isResultValid,
         weatherModuleService::getLightIntenseSensorResponse);
   }
 
-  private boolean isResultValid(final int lightIntense) {
+  private Boolean isResultValid() {
+    return isResultValid(weatherModuleService.getLightIntenseSensorResponse().getPinValue());
+  }
+
+  private Boolean isResultValid(final int lightIntense) {
     if (TimeRangeUtils.inTimeRange(day) && lightIntense <= 0) {
       return false;
     }

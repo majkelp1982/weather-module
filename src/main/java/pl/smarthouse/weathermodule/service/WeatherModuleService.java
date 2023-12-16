@@ -28,6 +28,7 @@ public class WeatherModuleService {
   public void convertToPercentAndSetLightIntense(final PinResponse pinResponse) {
     final int convertedToPercentValue = convertPinValueToPercent(pinResponse.getPinValue());
     pinResponse.setPinValue(convertedToPercentValue);
+    pinResponse.setPinDefaultState(PinState.HIGH);
     pinResponse.setPinState(PinState.HIGH);
     weatherModuleConfiguration.getWeatherModuleDao().setLightIntense(pinResponse);
   }
