@@ -41,7 +41,7 @@ public class WeatherModuleConfiguration {
     pinResponse.setPinDefaultState(PinState.HIGH);
     weatherModuleDao =
         WeatherModuleDao.builder()
-            .moduleName(Esp32ModuleProperties.MODULE_TYPE)
+            .type(Esp32ModuleProperties.MODULE_TYPE)
             .bme280Response(new Bme280Response())
             .sds011Response(sds011Response)
             .lightIntense(pinResponse)
