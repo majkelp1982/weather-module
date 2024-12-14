@@ -9,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import pl.smarthouse.smartmodule.model.actors.actor.ActorMap;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280;
-import pl.smarthouse.smartmodule.model.actors.type.pin.Pin;
-import pl.smarthouse.smartmodule.model.actors.type.pin.PinMode;
 import pl.smarthouse.smartmodule.model.actors.type.sds011.Sds011;
 import pl.smarthouse.smartmodule.services.ManagerService;
 import pl.smarthouse.smartmodule.services.ModuleService;
@@ -38,7 +36,6 @@ public class Esp32ModuleConfig {
     final ActorMap actorMap = new ActorMap();
     actorMap.putActor(new Bme280(BME280, BME280_PIN));
     actorMap.putActor(new Sds011(SDS011));
-    actorMap.putActor(new Pin(LIGHT_INTENSE, LIGHT_INTENSE_PIN, PinMode.ANALOG_INPUT));
     return actorMap;
   }
 }

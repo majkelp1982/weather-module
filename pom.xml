@@ -63,6 +63,11 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.1.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.shredzone.commons</groupId>
+			<artifactId>commons-suncalc</artifactId>
+			<version>3.11</version>
+		</dependency>
 	</dependencies>
 
 	<build>

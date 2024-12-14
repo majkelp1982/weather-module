@@ -1,13 +1,14 @@
 package pl.smarthouse.weathermodule.configurations;
 
+import java.time.LocalTime;
 import javax.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
+import pl.smarthouse.sharedobjects.dto.weather.Sun;
+import pl.smarthouse.sharedobjects.dto.weather.SunState;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280Response;
-import pl.smarthouse.smartmodule.model.actors.type.pin.PinResponse;
-import pl.smarthouse.smartmodule.model.actors.type.pin.PinState;
 import pl.smarthouse.smartmodule.model.actors.type.sds011.Sds011Response;
 import pl.smarthouse.smartmodule.model.actors.type.sds011.Sds011State;
 import pl.smarthouse.smartmonitoring.model.BooleanCompareProperties;
@@ -36,15 +37,16 @@ public class WeatherModuleConfiguration {
     sensor.setError(true);
     final Sds011Response sds011Response = new Sds011Response();
     sds011Response.setMode(Sds011State.SLEEP);
-    final PinResponse pinResponse = new PinResponse();
-    pinResponse.setPinState(PinState.HIGH);
-    pinResponse.setPinDefaultState(PinState.HIGH);
+    Sun sun = new Sun();
+    sun.setSunSet(LocalTime.now());
+    sun.setSunRise(LocalTime.now());
+    sun.setSunState(SunState.SET);
     weatherModuleDao =
         WeatherModuleDao.builder()
             .type(Esp32ModuleProperties.MODULE_TYPE)
             .bme280Response(new Bme280Response())
             .sds011Response(sds011Response)
-            .lightIntense(pinResponse)
+            .sun(new Sun())
             .build();
     monitoringService.setModuleDaoObject(weatherModuleDao);
     setCompareProperties();
@@ -65,17 +67,7 @@ public class WeatherModuleConfiguration {
     compareProcessor.addMap(
         "sds011Response.pm10",
         NumberCompareProperties.builder().saveEnabled(true).saveTolerance(5).build());
-
     compareProcessor.addMap(
-        "lightIntense.error", BooleanCompareProperties.builder().saveEnabled(true).build());
-    compareProcessor.addMap(
-        "lightIntense.counter", NumberCompareProperties.builder().saveEnabled(false).build());
-    compareProcessor.addMap(
-        "lightIntense.pinDefaultState", EnumCompareProperties.builder().saveEnabled(false).build());
-    compareProcessor.addMap(
-        "lightIntense.pinState", EnumCompareProperties.builder().saveEnabled(false).build());
-    compareProcessor.addMap(
-        "lightIntense.pinValue",
-        NumberCompareProperties.builder().saveEnabled(true).saveTolerance(5).build());
+        "sun.sunState", EnumCompareProperties.builder().saveEnabled(true).build());
   }
 }
