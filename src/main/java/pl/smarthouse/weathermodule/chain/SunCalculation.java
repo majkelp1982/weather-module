@@ -22,7 +22,7 @@ public class SunCalculation {
   private static final Logger log = LoggerFactory.getLogger(SunCalculation.class);
 
   @Scheduled(fixedDelay = 10 * 60 * 1000)
-  void calculateSunState() {
+  public void calculateSunState() {
     LocalDateTime now = LocalDateTime.now();
     SunTimes times = SunTimes.compute().on(now).at(50.2584100, 19.02754).execute();
 
@@ -34,6 +34,5 @@ public class SunCalculation {
                 && now.isBefore(sun.getSunSet().atDate(now.toLocalDate())))
             ? SunState.RISE
             : SunState.SET);
-    log.info("Calculating sun times finished. Sun: {}", sun);
   }
 }

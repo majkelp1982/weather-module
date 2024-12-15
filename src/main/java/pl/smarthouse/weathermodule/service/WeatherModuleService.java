@@ -6,15 +6,18 @@ import org.springframework.stereotype.Service;
 import pl.smarthouse.sharedobjects.dto.weather.WeatherModuleDto;
 import pl.smarthouse.smartmodule.model.actors.type.bme280.Bme280Response;
 import pl.smarthouse.smartmodule.model.actors.type.sds011.Sds011Response;
+import pl.smarthouse.weathermodule.chain.SunCalculation;
 import pl.smarthouse.weathermodule.configurations.WeatherModuleConfiguration;
 
 @Service
 @RequiredArgsConstructor
 public class WeatherModuleService {
   private final WeatherModuleConfiguration weatherModuleConfiguration;
+  private final SunCalculation sunCalculation;
   private final ModelMapper modelMapper = new ModelMapper();
 
   public WeatherModuleDto getWeatherModule() {
+    sunCalculation.calculateSunState();
     return modelMapper.map(
         weatherModuleConfiguration.getWeatherModuleDao(), WeatherModuleDto.class);
   }
