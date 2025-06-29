@@ -34,7 +34,7 @@ public class Esp32ModuleConfig {
 
   private ActorMap createActors() {
     final ActorMap actorMap = new ActorMap();
-    actorMap.putActor(new Bme280(BME280, BME280_PIN));
+    actorMap.putActor(new Bme280(BME280, I2C_MODE, BME280_ADDRESS));
     actorMap.putActor(new Sds011(SDS011));
     return actorMap;
   }
